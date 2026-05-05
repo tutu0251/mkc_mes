@@ -1,0 +1,2522 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MKC Corporate MES — UI Mockup</title>
+    <style>
+      :root {
+        --bg: #0b1220;
+        --panel: #0f1a2d;
+        --panel-2: #101f36;
+        --border: rgba(255, 255, 255, 0.08);
+        --text: rgba(255, 255, 255, 0.88);
+        --muted: rgba(255, 255, 255, 0.62);
+        --muted-2: rgba(255, 255, 255, 0.45);
+        --brand: #5eead4;
+        --brand-2: #60a5fa;
+        --danger: #fb7185;
+        --warn: #fbbf24;
+        --good: #34d399;
+        --shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+        --ring: 0 0 0 3px rgba(94, 234, 212, 0.16);
+        --radius: 14px;
+        --radius-sm: 10px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+          "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--text);
+        background:
+          radial-gradient(1200px 700px at 15% 10%, rgba(96, 165, 250, 0.18), transparent 60%),
+          radial-gradient(1000px 600px at 85% 20%, rgba(94, 234, 212, 0.12), transparent 55%),
+          radial-gradient(900px 500px at 70% 95%, rgba(251, 191, 36, 0.08), transparent 55%),
+          var(--bg);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .app {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+      }
+
+      .sidebar {
+        border-right: 1px solid var(--border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 30%),
+          rgba(9, 14, 26, 0.5);
+        padding: 18px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 10px 14px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .brand-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(94, 234, 212, 0.9), rgba(96, 165, 250, 0.85));
+        box-shadow: 0 12px 25px rgba(94, 234, 212, 0.12);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .logo::after {
+        content: "";
+        position: absolute;
+        inset: -30%;
+        background: conic-gradient(
+          from 90deg,
+          rgba(255, 255, 255, 0.25),
+          transparent 40%,
+          rgba(255, 255, 255, 0.12),
+          transparent 70%
+        );
+        transform: rotate(20deg);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        font-weight: 700;
+      }
+
+      .brand p {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .env-pill {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.75);
+        padding: 6px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px 6px;
+      }
+
+      .nav-group {
+        margin-top: 6px;
+        padding-top: 10px;
+        border-top: 1px solid var(--border);
+      }
+
+      .nav-title {
+        font-size: 11px;
+        color: var(--muted-2);
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        padding: 0 10px 8px;
+      }
+
+      .nav a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 10px;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        color: rgba(255, 255, 255, 0.82);
+        background: transparent;
+        transition: 150ms ease;
+      }
+
+      .nav a:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(255, 255, 255, 0.06);
+      }
+
+      .nav a.active {
+        background: linear-gradient(
+          135deg,
+          rgba(94, 234, 212, 0.16),
+          rgba(96, 165, 250, 0.1)
+        );
+        border-color: rgba(94, 234, 212, 0.22);
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+      }
+
+      .nav .icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .sidebar-footer {
+        margin-top: auto;
+        border-top: 1px solid var(--border);
+        padding: 12px 10px 6px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .sidebar-footer .kv {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 6px 10px;
+        align-items: center;
+        font-size: 12px;
+      }
+
+      .sidebar-footer .kv span {
+        color: var(--muted);
+      }
+
+      .sidebar-footer .kv strong {
+        font-family: var(--mono);
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .topbar {
+        padding: 18px 22px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .topbar h2 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+      }
+
+      .topbar .subtitle {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        min-width: 330px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .search input {
+        width: 100%;
+        border: 0;
+        outline: none;
+        color: rgba(255, 255, 255, 0.9);
+        background: transparent;
+        font-size: 12px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .chip .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: var(--good);
+        box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.12);
+      }
+
+      .main {
+        padding: 6px 22px 22px;
+        overflow: auto;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+        align-items: start;
+      }
+
+      .card {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 40%),
+          rgba(15, 26, 45, 0.72);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .card-header {
+        padding: 14px 14px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .card-header h3 {
+        margin: 0;
+        font-size: 13px;
+        letter-spacing: 0.2px;
+      }
+
+      .card-header .meta {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .card-body {
+        padding: 14px;
+      }
+
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .kpi {
+        padding: 14px 14px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .kpi::after {
+        content: "";
+        position: absolute;
+        inset: -80px -120px auto auto;
+        width: 240px;
+        height: 240px;
+        border-radius: 999px;
+        background: radial-gradient(circle at 30% 30%, rgba(94, 234, 212, 0.22), transparent 60%);
+        transform: rotate(15deg);
+      }
+
+      .kpi .label {
+        position: relative;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .kpi .value {
+        position: relative;
+        margin-top: 10px;
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 0.4px;
+      }
+
+      .kpi .trend {
+        position: relative;
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--muted);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .pill {
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        background: rgba(255, 255, 255, 0.03);
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .pill.good {
+        border-color: rgba(52, 211, 153, 0.28);
+        background: rgba(52, 211, 153, 0.08);
+      }
+
+      .pill.warn {
+        border-color: rgba(251, 191, 36, 0.28);
+        background: rgba(251, 191, 36, 0.08);
+      }
+
+      .pill.bad {
+        border-color: rgba(251, 113, 133, 0.28);
+        background: rgba(251, 113, 133, 0.08);
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr;
+        gap: 12px;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .small {
+        font-size: 12px;
+      }
+
+      .btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+
+      button,
+      .btn {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 12px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 150ms ease;
+      }
+
+      button:hover,
+      .btn:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      button:focus-visible,
+      input:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible {
+        outline: none;
+        box-shadow: var(--ring);
+      }
+
+      button.primary {
+        border-color: rgba(94, 234, 212, 0.26);
+        background: linear-gradient(135deg, rgba(94, 234, 212, 0.18), rgba(96, 165, 250, 0.1));
+      }
+
+      button.danger {
+        border-color: rgba(251, 113, 133, 0.3);
+        background: rgba(251, 113, 133, 0.1);
+      }
+
+      button.ghost {
+        background: transparent;
+      }
+
+      button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .form {
+        display: grid;
+        gap: 10px;
+      }
+
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+
+      .field label {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 12px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        outline: none;
+      }
+
+      .field textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 10px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 12px;
+        vertical-align: top;
+      }
+
+      th {
+        text-align: left;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 11px;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+      }
+
+      .table-wrap {
+        overflow: auto;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.08);
+      }
+
+      .badge {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        color: rgba(255, 255, 255, 0.82);
+        white-space: nowrap;
+      }
+
+      .badge .mini {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--muted);
+      }
+
+      .badge.good .mini {
+        background: var(--good);
+      }
+
+      .badge.warn .mini {
+        background: var(--warn);
+      }
+
+      .badge.bad .mini {
+        background: var(--danger);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 10px;
+      }
+
+      .t-item {
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .t-line {
+        width: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .t-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        margin-top: 2px;
+        background: rgba(94, 234, 212, 0.9);
+        box-shadow: 0 0 0 4px rgba(94, 234, 212, 0.12);
+      }
+
+      .t-content {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 14px;
+        padding: 10px 12px;
+      }
+
+      .t-content .top {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: baseline;
+      }
+
+      .t-content strong {
+        font-size: 12px;
+        letter-spacing: 0.2px;
+      }
+
+      .t-content .time {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 11px;
+      }
+
+      .spark {
+        height: 62px;
+        border-radius: 14px;
+        border: 1px dashed rgba(255, 255, 255, 0.14);
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
+          rgba(255, 255, 255, 0.03);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .spark svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Lightweight chart toolkit (UI mock) */
+      .viz-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .viz {
+        display: grid;
+        gap: 10px;
+      }
+
+      .viz-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .viz-top .title {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.85);
+        letter-spacing: 0.2px;
+        font-weight: 650;
+      }
+
+      .viz-top .sub {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .viz-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 10px;
+      }
+
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      .donut {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .donut svg {
+        width: 130px;
+        height: 130px;
+        filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.28));
+      }
+
+      .donut .ring-bg {
+        stroke: rgba(255, 255, 255, 0.12);
+      }
+
+      .donut .ring {
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        stroke-linecap: round;
+      }
+
+      .donut-center {
+        position: relative;
+        margin-top: -130px;
+        width: 130px;
+        height: 130px;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+      }
+
+      .donut-center .big {
+        font-family: var(--mono);
+        font-weight: 800;
+        font-size: 16px;
+        letter-spacing: 0.3px;
+      }
+
+      .donut-center .small {
+        margin-top: 2px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .barlist {
+        display: grid;
+        gap: 8px;
+      }
+
+      .barrow {
+        display: grid;
+        grid-template-columns: 1fr 110px;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .barrow .name {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.78);
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+
+      .bar > span {
+        display: block;
+        height: 100%;
+        width: 0%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(94, 234, 212, 0.85), rgba(96, 165, 250, 0.85));
+        box-shadow: 0 10px 25px rgba(96, 165, 250, 0.08);
+        transition: width 600ms ease;
+      }
+
+      .bar > span.c1 {
+        background: linear-gradient(90deg, rgba(96, 165, 250, 0.95), rgba(94, 234, 212, 0.6));
+      }
+      .bar > span.c2 {
+        background: linear-gradient(90deg, rgba(251, 191, 36, 0.92), rgba(251, 113, 133, 0.7));
+      }
+      .bar > span.c3 {
+        background: linear-gradient(90deg, rgba(52, 211, 153, 0.92), rgba(94, 234, 212, 0.65));
+      }
+
+      .heatmap {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 6px;
+      }
+
+      .cell {
+        aspect-ratio: 1 / 1;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        background: rgba(255, 255, 255, 0.04);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cell::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.18), transparent 55%);
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      .cell[data-level="0"] {
+        background: rgba(255, 255, 255, 0.035);
+      }
+      .cell[data-level="1"] {
+        background: rgba(96, 165, 250, 0.12);
+      }
+      .cell[data-level="2"] {
+        background: rgba(94, 234, 212, 0.14);
+      }
+      .cell[data-level="3"] {
+        background: rgba(251, 191, 36, 0.16);
+      }
+      .cell[data-level="4"] {
+        background: rgba(251, 113, 133, 0.18);
+      }
+
+      .callout {
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(94, 234, 212, 0.18);
+        background: rgba(94, 234, 212, 0.06);
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .view {
+        display: none;
+      }
+
+      .view.active {
+        display: block;
+      }
+
+      .hint {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .mono {
+        font-family: var(--mono);
+      }
+
+      @media (max-width: 1060px) {
+        .app {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: sticky;
+          top: 0;
+          z-index: 5;
+        }
+        .search {
+          min-width: 0;
+          width: 100%;
+        }
+        .kpis {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .two-col,
+        .split,
+        .row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-left">
+            <div class="logo" aria-hidden="true"></div>
+            <div>
+              <h1>MKC Corporate MES</h1>
+              <p>Operations dashboard mockup</p>
+            </div>
+          </div>
+          <span class="env-pill">UI ONLY</span>
+        </div>
+
+        <nav class="nav" id="nav">
+          <div class="nav-title">Corporate</div>
+          <a href="#dashboard" data-view="dashboard" class="active"
+            ><span class="icon">CD</span>Corporate Dashboard</a
+          >
+          <a href="#mes" data-view="mes"><span class="icon">ME</span>Manufacturing MES</a>
+          <a href="#trace" data-view="trace"><span class="icon">TR</span>Traceability</a>
+          <a href="#scada" data-view="scada"><span class="icon">SC</span>SCADA / Monitoring</a>
+          <a href="#quality" data-view="quality"><span class="icon">QS</span>Quality / SPC</a>
+
+          <div class="nav-group">
+            <div class="nav-title">Multi-business ops</div>
+            <a href="#media" data-view="media"><span class="icon">MS</span>Media / Streaming</a>
+            <a href="#solar" data-view="solar"><span class="icon">SE</span>Solar Energy</a>
+            <a href="#ent" data-view="ent"><span class="icon">EF</span>Entertainment Facilities</a>
+          </div>
+
+          <div class="nav-group">
+            <div class="nav-title">Reliability</div>
+            <a href="#maint" data-view="maint"><span class="icon">MA</span>Maintenance</a>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="kv">
+            <span>Plant</span><strong>MKC-PLT-01</strong>
+            <span>Shift</span><strong>D1</strong>
+            <span>Mock time</span><strong id="clock">--:--:--</strong>
+          </div>
+          <div class="hint">No backend, no DB, no auth — all data is sample/in-memory.</div>
+        </div>
+      </aside>
+
+      <section class="content">
+        <header class="topbar">
+          <div>
+            <h2 id="pageTitle">Corporate Dashboard</h2>
+            <div class="subtitle" id="pageSubtitle">
+              Consolidated view across manufacturing, media, and energy operations.
+            </div>
+          </div>
+          <div class="topbar-right">
+            <div class="search" role="search">
+              <span class="muted" aria-hidden="true">⌕</span>
+              <input id="globalSearch" placeholder="Search mock data: work order, asset, lot, barcode…" />
+            </div>
+            <div class="chip" title="Mock system health">
+              <span class="dot" aria-hidden="true"></span>Systems nominal
+            </div>
+          </div>
+        </header>
+
+        <main class="main">
+          <!-- DASHBOARD -->
+          <section class="view active" id="view-dashboard">
+            <div class="grid">
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>Enterprise KPIs (Today)</h3>
+                  <div class="meta">Last refresh: <span id="lastRefresh">--</span></div>
+                </div>
+                <div class="card-body">
+                  <div class="kpis">
+                    <div class="kpi">
+                      <div class="label">OEE (Plants)</div>
+                      <div class="value">84.2%</div>
+                      <div class="trend">
+                        <span class="pill good">▲ +1.4%</span> vs yesterday
+                      </div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">FPY (Quality)</div>
+                      <div class="value">97.6%</div>
+                      <div class="trend">
+                        <span class="pill warn">▼ -0.3%</span> weekly avg
+                      </div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Energy (Solar)</div>
+                      <div class="value">12.8 MWh</div>
+                      <div class="trend">
+                        <span class="pill good">▲ +0.9 MWh</span> vs forecast
+                      </div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Streaming QoE</div>
+                      <div class="value">99.91%</div>
+                      <div class="trend">
+                        <span class="pill good">Stable</span> last 60 min
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="height: 12px"></div>
+                  <div class="two-col">
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Production throughput (sample)</h3>
+                        <div class="meta">Units/hr</div>
+                      </div>
+                      <div class="card-body">
+                        <div class="spark" aria-hidden="true">
+                          <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                            <path
+                              d="M0,28 L8,25 L16,27 L24,18 L32,20 L40,14 L48,15 L56,10 L64,12 L72,8 L80,10 L88,6 L96,8 L100,7 L100,40 L0,40 Z"
+                              fill="rgba(94,234,212,0.16)"
+                            />
+                            <path
+                              d="M0,28 L8,25 L16,27 L24,18 L32,20 L40,14 L48,15 L56,10 L64,12 L72,8 L80,10 L88,6 L96,8 L100,7"
+                              fill="none"
+                              stroke="rgba(94,234,212,0.85)"
+                              stroke-width="1.8"
+                            />
+                          </svg>
+                        </div>
+                        <div class="small muted" style="margin-top: 10px">
+                          Plants: PV panels, servo motors, CNC, consumer electronics (DVD/STB), stereoscopic
+                          media equipment.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Operational alerts (sample)</h3>
+                        <div class="meta">Top 5</div>
+                      </div>
+                      <div class="card-body">
+                        <div class="timeline">
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot" style="background: var(--warn)"></div></div>
+                            <div class="t-content">
+                              <div class="top">
+                                <strong>SCADA: Servo Line 2 vibration trend</strong>
+                                <span class="time">10:21</span>
+                              </div>
+                              <div class="small muted">Check spindle alignment; threshold approaching.</div>
+                            </div>
+                          </div>
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot" style="background: var(--danger)"></div></div>
+                            <div class="t-content">
+                              <div class="top">
+                                <strong>Quality: STB assembly FPY dip</strong>
+                                <span class="time">09:58</span>
+                              </div>
+                              <div class="small muted">Suspected solder paste viscosity variance.</div>
+                            </div>
+                          </div>
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot" style="background: var(--brand-2)"></div></div>
+                            <div class="t-content">
+                              <div class="top">
+                                <strong>Streaming: CDN edge degradation</strong>
+                                <span class="time">09:33</span>
+                              </div>
+                              <div class="small muted">Auto-shift traffic; investigate region AP-N1.</div>
+                            </div>
+                          </div>
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot"></div></div>
+                            <div class="t-content">
+                              <div class="top">
+                                <strong>Energy: Solar Plant 3 inverter restart</strong>
+                                <span class="time">08:44</span>
+                              </div>
+                              <div class="small muted">Recovered; monitor DC string 3-7 temperatures.</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div style="height: 10px"></div>
+                        <div class="callout small">
+                          Tip: open <span class="mono">Manufacturing MES</span> for an operator production
+                          screen with barcode input + START/END timestamps.
+                        </div>
+
+                        <div class="viz-grid">
+                          <div class="card" style="grid-column: span 4; box-shadow: none">
+                            <div class="card-header">
+                              <h3>Business mix</h3>
+                              <div class="meta">Revenue share (mock)</div>
+                            </div>
+                            <div class="card-body viz">
+                              <div class="donut">
+                                <div>
+                                  <svg viewBox="0 0 120 120" aria-label="Donut chart: business mix">
+                                    <circle
+                                      class="ring-bg"
+                                      cx="60"
+                                      cy="60"
+                                      r="44"
+                                      fill="none"
+                                      stroke-width="14"
+                                    ></circle>
+                                    <circle
+                                      class="ring ring-a"
+                                      cx="60"
+                                      cy="60"
+                                      r="44"
+                                      fill="none"
+                                      stroke-width="14"
+                                      stroke="rgba(96,165,250,0.95)"
+                                      data-pct="28"
+                                    ></circle>
+                                    <circle
+                                      class="ring ring-b"
+                                      cx="60"
+                                      cy="60"
+                                      r="44"
+                                      fill="none"
+                                      stroke-width="14"
+                                      stroke="rgba(94,234,212,0.95)"
+                                      data-pct="22"
+                                    ></circle>
+                                    <circle
+                                      class="ring ring-c"
+                                      cx="60"
+                                      cy="60"
+                                      r="44"
+                                      fill="none"
+                                      stroke-width="14"
+                                      stroke="rgba(251,191,36,0.95)"
+                                      data-pct="18"
+                                    ></circle>
+                                    <circle
+                                      class="ring ring-d"
+                                      cx="60"
+                                      cy="60"
+                                      r="44"
+                                      fill="none"
+                                      stroke-width="14"
+                                      stroke="rgba(52,211,153,0.95)"
+                                      data-pct="17"
+                                    ></circle>
+                                    <circle
+                                      class="ring ring-e"
+                                      cx="60"
+                                      cy="60"
+                                      r="44"
+                                      fill="none"
+                                      stroke-width="14"
+                                      stroke="rgba(251,113,133,0.95)"
+                                      data-pct="15"
+                                    ></circle>
+                                  </svg>
+                                  <div class="donut-center">
+                                    <div style="text-align: center">
+                                      <div class="big" id="mixCenter">100%</div>
+                                      <div class="small">portfolio</div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="viz-legend" aria-label="Business mix legend">
+                                  <span class="legend-item"
+                                    ><span class="swatch" style="background: rgba(96,165,250,0.9)"></span>Streaming</span
+                                  >
+                                  <span class="legend-item"
+                                    ><span class="swatch" style="background: rgba(94,234,212,0.9)"></span>Manufacturing</span
+                                  >
+                                  <span class="legend-item"
+                                    ><span class="swatch" style="background: rgba(251,191,36,0.9)"></span>Solar</span
+                                  >
+                                  <span class="legend-item"
+                                    ><span class="swatch" style="background: rgba(52,211,153,0.9)"></span>Facilities</span
+                                  >
+                                  <span class="legend-item"
+                                    ><span class="swatch" style="background: rgba(251,113,133,0.9)"></span>Electronics</span
+                                  >
+                                </div>
+                              </div>
+                              <div class="hint">
+                                Mock distribution across streaming video, PV/servo/CNC, solar plants, and entertainment
+                                facilities.
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card" style="grid-column: span 4; box-shadow: none">
+                            <div class="card-header">
+                              <h3>Quality hotspots</h3>
+                              <div class="meta">Defect pareto (mock)</div>
+                            </div>
+                            <div class="card-body viz">
+                              <div class="barlist" id="paretoBars" aria-label="Defect pareto bars">
+                                <div class="barrow">
+                                  <div class="name"><span>Insufficient wetting</span><span class="mono">34%</span></div>
+                                  <div class="bar"><span class="c2" data-pct="34"></span></div>
+                                </div>
+                                <div class="barrow">
+                                  <div class="name"><span>Micro-crack (PV)</span><span class="mono">23%</span></div>
+                                  <div class="bar"><span class="c1" data-pct="23"></span></div>
+                                </div>
+                                <div class="barrow">
+                                  <div class="name"><span>Bearing noise</span><span class="mono">18%</span></div>
+                                  <div class="bar"><span class="c3" data-pct="18"></span></div>
+                                </div>
+                                <div class="barrow">
+                                  <div class="name"><span>AOI false reject</span><span class="mono">15%</span></div>
+                                  <div class="bar"><span data-pct="15"></span></div>
+                                </div>
+                                <div class="barrow">
+                                  <div class="name"><span>Cosmetic</span><span class="mono">10%</span></div>
+                                  <div class="bar"><span data-pct="10"></span></div>
+                                </div>
+                              </div>
+                              <div class="hint">Colored bars are purely illustrative; values are sample data.</div>
+                            </div>
+                          </div>
+
+                          <div class="card" style="grid-column: span 4; box-shadow: none">
+                            <div class="card-header">
+                              <h3>Operational intensity</h3>
+                              <div class="meta">12-week heatmap (mock)</div>
+                            </div>
+                            <div class="card-body viz">
+                              <div class="viz-top">
+                                <div class="title">Plants × weeks</div>
+                                <div class="sub">OEE/Load signal</div>
+                              </div>
+                              <div class="heatmap" id="hm" aria-label="Heatmap"></div>
+                              <div class="viz-legend" aria-label="Heatmap legend">
+                                <span class="legend-item"><span class="swatch" style="background: rgba(255,255,255,0.05)"></span>Low</span>
+                                <span class="legend-item"><span class="swatch" style="background: rgba(96,165,250,0.12)"></span></span>
+                                <span class="legend-item"><span class="swatch" style="background: rgba(94,234,212,0.14)"></span></span>
+                                <span class="legend-item"><span class="swatch" style="background: rgba(251,191,36,0.16)"></span></span>
+                                <span class="legend-item"><span class="swatch" style="background: rgba(251,113,133,0.18)"></span>High</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- MANUFACTURING MES -->
+          <section class="view" id="view-mes">
+            <div class="grid">
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>Operator Production Screen (Mock)</h3>
+                  <div class="meta">In-memory records only</div>
+                </div>
+                <div class="card-body">
+                  <div class="split">
+                    <div>
+                      <div class="row">
+                        <div class="field">
+                          <label for="workCenter">Work Center</label>
+                          <select id="workCenter">
+                            <option>PV-STRINGER-01</option>
+                            <option>SRV-ASSY-02</option>
+                            <option>CNC-MILL-03</option>
+                            <option>ELEC-SMT-01</option>
+                            <option>MEDIA-RIG-02</option>
+                          </select>
+                        </div>
+                        <div class="field">
+                          <label for="operatorId">Operator ID</label>
+                          <input id="operatorId" value="OP-1027" />
+                        </div>
+                      </div>
+
+                      <div style="height: 10px"></div>
+                      <div class="row">
+                        <div class="field">
+                          <label for="wo">Work Order</label>
+                          <input id="wo" value="WO-2026-0505-018" />
+                        </div>
+                        <div class="field">
+                          <label for="productFamily">Product Family</label>
+                          <select id="productFamily">
+                            <option>PV Panel (Mono)</option>
+                            <option>Servo Motor</option>
+                            <option>CNC Component</option>
+                            <option>STB Device</option>
+                            <option>DVD Player</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div style="height: 10px"></div>
+                      <div class="field">
+                        <label for="barcode">Product ID / Barcode (Mock Input)</label>
+                        <input
+                          id="barcode"
+                          class="mono"
+                          placeholder="Scan or type e.g. MKC-PV-LOT2405-000182"
+                          autocomplete="off"
+                        />
+                        <div class="hint">
+                          Enter a barcode, then click <strong>START</strong>. Click <strong>END</strong> to
+                          close the record (timestamps are generated by JavaScript).
+                        </div>
+                      </div>
+
+                      <div style="height: 10px"></div>
+                      <div class="btns">
+                        <button class="primary" id="btnStart">START</button>
+                        <button class="danger" id="btnEnd" disabled>END</button>
+                        <button class="ghost" id="btnClear">Clear</button>
+                        <span class="badge" id="runState"
+                          ><span class="mini"></span>Idle</span
+                        >
+                      </div>
+
+                      <div style="height: 12px"></div>
+                      <div class="card" style="box-shadow: none">
+                        <div class="card-header">
+                          <h3>Active run (mock)</h3>
+                          <div class="meta">START/END timestamps</div>
+                        </div>
+                        <div class="card-body small">
+                          <div class="kv" style="grid-template-columns: 160px 1fr; gap: 8px 12px">
+                            <span class="muted">Barcode</span><strong id="activeBarcode">—</strong>
+                            <span class="muted">Start</span><strong id="activeStart">—</strong>
+                            <span class="muted">End</span><strong id="activeEnd">—</strong>
+                            <span class="muted">Cycle time</span><strong id="activeCycle">—</strong>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div class="card" style="box-shadow: none">
+                        <div class="card-header">
+                          <h3>Recent production records (sample)</h3>
+                          <div class="meta"><span id="recordCount">0</span> rows</div>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-wrap">
+                            <table aria-label="Recent production records">
+                              <thead>
+                                <tr>
+                                  <th>Timestamp</th>
+                                  <th>Work center</th>
+                                  <th>WO</th>
+                                  <th>Barcode</th>
+                                  <th>Status</th>
+                                  <th>Cycle</th>
+                                </tr>
+                              </thead>
+                              <tbody id="recordsTbody"></tbody>
+                            </table>
+                          </div>
+                          <div class="hint" style="margin-top: 10px">
+                            Records are stored in memory only (page refresh clears them).
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- TRACEABILITY -->
+          <section class="view" id="view-trace">
+            <div class="grid">
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>Traceability (Mock)</h3>
+                  <div class="meta">Genealogy timeline + sample events</div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="field">
+                      <label for="traceInput">Product / Lot ID</label>
+                      <input
+                        id="traceInput"
+                        class="mono"
+                        value="MKC-PV-LOT2405-000182"
+                        placeholder="e.g. MKC-SRV-SN-0091812"
+                      />
+                    </div>
+                    <div class="btns" style="align-self: end; justify-content: flex-end">
+                      <button class="primary" id="btnTrace">Load timeline</button>
+                      <button class="ghost" id="btnTraceSample">Use sample</button>
+                    </div>
+                  </div>
+
+                  <div style="height: 10px"></div>
+                  <div class="split">
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Genealogy</h3>
+                        <div class="meta">Upstream → downstream</div>
+                      </div>
+                      <div class="card-body small">
+                        <div class="kv" style="grid-template-columns: 160px 1fr; gap: 8px 12px">
+                          <span class="muted">Product</span><strong id="traceProduct">—</strong>
+                          <span class="muted">WO</span><strong id="traceWo">—</strong>
+                          <span class="muted">Line</span><strong id="traceLine">—</strong>
+                          <span class="muted">Material lots</span><strong id="traceMats">—</strong>
+                          <span class="muted">Quality status</span
+                          ><strong id="traceQual">—</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Timeline</h3>
+                        <div class="meta">Sample event log</div>
+                      </div>
+                      <div class="card-body">
+                        <div class="timeline" id="traceTimeline"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCADA / MONITORING -->
+          <section class="view" id="view-scada">
+            <div class="grid">
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>SCADA / Machine Monitoring (Mock)</h3>
+                  <div class="meta">Asset list + sample telemetry</div>
+                </div>
+                <div class="card-body">
+                  <div class="two-col">
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Assets</h3>
+                        <div class="meta">Top view</div>
+                      </div>
+                      <div class="card-body small">
+                        <div class="table-wrap">
+                          <table aria-label="Assets">
+                            <thead>
+                              <tr>
+                                <th>Asset</th>
+                                <th>Area</th>
+                                <th>State</th>
+                                <th>Notes</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="mono">CNC-MILL-03</td>
+                                <td>Machining</td>
+                                <td><span class="badge good"><span class="mini"></span>RUN</span></td>
+                                <td class="muted">Spindle load stable</td>
+                              </tr>
+                              <tr>
+                                <td class="mono">SRV-ASSY-02</td>
+                                <td>Assembly</td>
+                                <td><span class="badge warn"><span class="mini"></span>WARN</span></td>
+                                <td class="muted">Vibration trending</td>
+                              </tr>
+                              <tr>
+                                <td class="mono">ELEC-SMT-01</td>
+                                <td>SMT</td>
+                                <td><span class="badge good"><span class="mini"></span>RUN</span></td>
+                                <td class="muted">AOI queue normal</td>
+                              </tr>
+                              <tr>
+                                <td class="mono">PV-STRINGER-01</td>
+                                <td>PV</td>
+                                <td><span class="badge bad"><span class="mini"></span>STOP</span></td>
+                                <td class="muted">Material replenishment</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Live telemetry (sample)</h3>
+                        <div class="meta">Updated every 2s</div>
+                      </div>
+                      <div class="card-body">
+                        <div class="kpis" style="grid-template-columns: repeat(2, minmax(0, 1fr))">
+                          <div class="kpi">
+                            <div class="label">Spindle load</div>
+                            <div class="value"><span id="telLoad">—</span>%</div>
+                            <div class="trend"><span class="pill" id="telLoadPill">—</span></div>
+                          </div>
+                          <div class="kpi">
+                            <div class="label">Vibration RMS</div>
+                            <div class="value"><span id="telVib">—</span> mm/s</div>
+                            <div class="trend"><span class="pill" id="telVibPill">—</span></div>
+                          </div>
+                          <div class="kpi">
+                            <div class="label">Temp</div>
+                            <div class="value"><span id="telTemp">—</span>°C</div>
+                            <div class="trend"><span class="pill" id="telTempPill">—</span></div>
+                          </div>
+                          <div class="kpi">
+                            <div class="label">Network latency</div>
+                            <div class="value"><span id="telLat">—</span> ms</div>
+                            <div class="trend"><span class="pill good">OK</span></div>
+                          </div>
+                        </div>
+                        <div class="hint" style="margin-top: 10px">
+                          Telemetry values are randomized to simulate real-time monitoring.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- QUALITY / SPC -->
+          <section class="view" id="view-quality">
+            <div class="grid">
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>Quality / SPC (Mock)</h3>
+                  <div class="meta">Incoming → in-process → final</div>
+                </div>
+                <div class="card-body">
+                  <div class="two-col">
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>SPC snapshot</h3>
+                        <div class="meta">CTQ: solder joint height</div>
+                      </div>
+                      <div class="card-body">
+                        <div class="spark" aria-hidden="true">
+                          <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                            <path
+                              d="M0,22 L10,21 L20,20 L30,19 L40,20 L50,18 L60,19 L70,17 L80,18 L90,16 L100,17"
+                              fill="none"
+                              stroke="rgba(96,165,250,0.9)"
+                              stroke-width="1.8"
+                            />
+                            <path
+                              d="M0,12 L100,12"
+                              fill="none"
+                              stroke="rgba(251,191,36,0.65)"
+                              stroke-width="1.2"
+                              stroke-dasharray="2 2"
+                            />
+                            <path
+                              d="M0,30 L100,30"
+                              fill="none"
+                              stroke="rgba(251,191,36,0.65)"
+                              stroke-width="1.2"
+                              stroke-dasharray="2 2"
+                            />
+                          </svg>
+                        </div>
+                        <div class="small muted" style="margin-top: 10px">
+                          Control limits (UCL/LCL) shown as dashed lines. (Mock visualization)
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Nonconformance queue</h3>
+                        <div class="meta">Sample tickets</div>
+                      </div>
+                      <div class="card-body small">
+                        <div class="table-wrap">
+                          <table aria-label="Nonconformance queue">
+                            <thead>
+                              <tr>
+                                <th>ID</th>
+                                <th>Area</th>
+                                <th>Issue</th>
+                                <th>Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="mono">NCR-14208</td>
+                                <td>SMT</td>
+                                <td class="muted">Insufficient solder wetting</td>
+                                <td><span class="badge warn"><span class="mini"></span>Review</span></td>
+                              </tr>
+                              <tr>
+                                <td class="mono">NCR-14211</td>
+                                <td>PV</td>
+                                <td class="muted">Cell micro-crack detected</td>
+                                <td><span class="badge bad"><span class="mini"></span>Contain</span></td>
+                              </tr>
+                              <tr>
+                                <td class="mono">NCR-14215</td>
+                                <td>Servo</td>
+                                <td class="muted">Bearing noise above spec</td>
+                                <td><span class="badge good"><span class="mini"></span>Closed</span></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- MEDIA / STREAMING -->
+          <section class="view" id="view-media">
+            <div class="grid">
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>Media / Streaming Operations (Mock)</h3>
+                  <div class="meta">QoE + pipeline health</div>
+                </div>
+                <div class="card-body">
+                  <div class="kpis" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
+                    <div class="kpi">
+                      <div class="label">Playback success</div>
+                      <div class="value">99.91%</div>
+                      <div class="trend"><span class="pill good">OK</span> last 60 min</div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Rebuffer ratio</div>
+                      <div class="value">0.18%</div>
+                      <div class="trend"><span class="pill good">Low</span> target &lt; 0.30%</div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Encode queue</div>
+                      <div class="value">12 jobs</div>
+                      <div class="trend"><span class="pill warn">Busy</span> peak hours</div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">CDN errors</div>
+                      <div class="value">0.06%</div>
+                      <div class="trend"><span class="pill good">OK</span> steady</div>
+                    </div>
+                  </div>
+                  <div style="height: 12px"></div>
+                  <div class="two-col">
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Regions (sample)</h3>
+                        <div class="meta">QoE distribution</div>
+                      </div>
+                      <div class="card-body small">
+                        <div class="table-wrap">
+                          <table aria-label="Streaming regions">
+                            <thead>
+                              <tr>
+                                <th>Region</th>
+                                <th>QoE</th>
+                                <th>Latency</th>
+                                <th>Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>AP-N1</td>
+                                <td class="mono">99.72%</td>
+                                <td class="mono">42ms</td>
+                                <td><span class="badge warn"><span class="mini"></span>Degraded</span></td>
+                              </tr>
+                              <tr>
+                                <td>AP-N2</td>
+                                <td class="mono">99.95%</td>
+                                <td class="mono">38ms</td>
+                                <td><span class="badge good"><span class="mini"></span>OK</span></td>
+                              </tr>
+                              <tr>
+                                <td>EU-W1</td>
+                                <td class="mono">99.93%</td>
+                                <td class="mono">56ms</td>
+                                <td><span class="badge good"><span class="mini"></span>OK</span></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Content pipeline</h3>
+                        <div class="meta">Sample steps</div>
+                      </div>
+                      <div class="card-body small">
+                        <div class="timeline">
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot"></div></div>
+                            <div class="t-content">
+                              <div class="top">
+                                <strong>Ingest</strong>
+                                <span class="time">OK</span>
+                              </div>
+                              <div class="muted">New stereoscopic title deliveries accepted.</div>
+                            </div>
+                          </div>
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot" style="background: var(--brand-2)"></div></div>
+                            <div class="t-content">
+                              <div class="top">
+                                <strong>Transcode</strong>
+                                <span class="time">Busy</span>
+                              </div>
+                              <div class="muted">4K ladder active; GPU pool near capacity.</div>
+                            </div>
+                          </div>
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot"></div></div>
+                            <div class="t-content">
+                              <div class="top">
+                                <strong>Package & DRM</strong>
+                                <span class="time">OK</span>
+                              </div>
+                              <div class="muted">Packaging stable; keys healthy.</div>
+                            </div>
+                          </div>
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot" style="background: var(--warn)"></div></div>
+                            <div class="t-content">
+                              <div class="top">
+                                <strong>CDN distribute</strong>
+                                <span class="time">Investigate</span>
+                              </div>
+                              <div class="muted">AP-N1 edge packet loss suspected.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SOLAR ENERGY -->
+          <section class="view" id="view-solar">
+            <div class="grid">
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>Solar Energy Operations (Mock)</h3>
+                  <div class="meta">Plant overview + sample generation</div>
+                </div>
+                <div class="card-body">
+                  <div class="kpis" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
+                    <div class="kpi">
+                      <div class="label">Plant 1</div>
+                      <div class="value">4.2 MWh</div>
+                      <div class="trend"><span class="pill good">▲</span> above forecast</div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Plant 2</div>
+                      <div class="value">3.8 MWh</div>
+                      <div class="trend"><span class="pill good">OK</span> nominal</div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Plant 3</div>
+                      <div class="value">4.8 MWh</div>
+                      <div class="trend"><span class="pill warn">Check</span> inverter restarts</div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Curtailment</div>
+                      <div class="value">0.6%</div>
+                      <div class="trend"><span class="pill good">Low</span></div>
+                    </div>
+                  </div>
+                  <div style="height: 12px"></div>
+                  <div class="two-col">
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Strings & inverters (sample)</h3>
+                        <div class="meta">Health</div>
+                      </div>
+                      <div class="card-body small">
+                        <div class="table-wrap">
+                          <table aria-label="Inverters">
+                            <thead>
+                              <tr>
+                                <th>Device</th>
+                                <th>State</th>
+                                <th>DC temp</th>
+                                <th>Notes</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="mono">INV-P3-07</td>
+                                <td><span class="badge warn"><span class="mini"></span>Monitor</span></td>
+                                <td class="mono">62°C</td>
+                                <td class="muted">String 3-7 warm</td>
+                              </tr>
+                              <tr>
+                                <td class="mono">INV-P1-02</td>
+                                <td><span class="badge good"><span class="mini"></span>OK</span></td>
+                                <td class="mono">58°C</td>
+                                <td class="muted">Normal</td>
+                              </tr>
+                              <tr>
+                                <td class="mono">INV-P2-04</td>
+                                <td><span class="badge good"><span class="mini"></span>OK</span></td>
+                                <td class="mono">55°C</td>
+                                <td class="muted">Normal</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Daily generation (mock)</h3>
+                        <div class="meta">MWh</div>
+                      </div>
+                      <div class="card-body">
+                        <div class="spark" aria-hidden="true">
+                          <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                            <path
+                              d="M0,34 L10,30 L20,24 L30,18 L40,14 L50,12 L60,14 L70,18 L80,24 L90,30 L100,34"
+                              fill="rgba(251,191,36,0.16)"
+                            />
+                            <path
+                              d="M0,34 L10,30 L20,24 L30,18 L40,14 L50,12 L60,14 L70,18 L80,24 L90,30 L100,34"
+                              fill="none"
+                              stroke="rgba(251,191,36,0.85)"
+                              stroke-width="1.8"
+                            />
+                          </svg>
+                        </div>
+                        <div class="hint" style="margin-top: 10px">
+                          Bell-shaped curve approximates typical solar output. (Mock)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ENTERTAINMENT FACILITIES -->
+          <section class="view" id="view-ent">
+            <div class="grid">
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>Entertainment Facilities (Mock)</h3>
+                  <div class="meta">Footfall + equipment readiness</div>
+                </div>
+                <div class="card-body">
+                  <div class="kpis" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
+                    <div class="kpi">
+                      <div class="label">Visitors (today)</div>
+                      <div class="value">3,482</div>
+                      <div class="trend"><span class="pill good">▲</span> +6% vs last week</div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Ride uptime</div>
+                      <div class="value">99.2%</div>
+                      <div class="trend"><span class="pill good">OK</span></div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Queue time (avg)</div>
+                      <div class="value">14 min</div>
+                      <div class="trend"><span class="pill warn">Peak</span></div>
+                    </div>
+                    <div class="kpi">
+                      <div class="label">Incidents</div>
+                      <div class="value">0</div>
+                      <div class="trend"><span class="pill good">Clear</span></div>
+                    </div>
+                  </div>
+                  <div style="height: 12px"></div>
+                  <div class="two-col">
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Facilities</h3>
+                        <div class="meta">Sample</div>
+                      </div>
+                      <div class="card-body small">
+                        <div class="table-wrap">
+                          <table aria-label="Facilities list">
+                            <thead>
+                              <tr>
+                                <th>Facility</th>
+                                <th>State</th>
+                                <th>Notes</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>3D Theater</td>
+                                <td><span class="badge good"><span class="mini"></span>Open</span></td>
+                                <td class="muted">Stereoscopic projector calibrated</td>
+                              </tr>
+                              <tr>
+                                <td>Concert Hall</td>
+                                <td><span class="badge good"><span class="mini"></span>Open</span></td>
+                                <td class="muted">Evening event load-in</td>
+                              </tr>
+                              <tr>
+                                <td>Arcade Zone</td>
+                                <td><span class="badge warn"><span class="mini"></span>Busy</span></td>
+                                <td class="muted">Crowd control active</td>
+                              </tr>
+                              <tr>
+                                <td>Family Ride A</td>
+                                <td><span class="badge good"><span class="mini"></span>Open</span></td>
+                                <td class="muted">Next inspection in 3 days</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Readiness checks</h3>
+                        <div class="meta">Mock checklist</div>
+                      </div>
+                      <div class="card-body small">
+                        <div class="timeline">
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot"></div></div>
+                            <div class="t-content">
+                              <div class="top"><strong>Fire safety</strong><span class="time">Pass</span></div>
+                              <div class="muted">All sensors online.</div>
+                            </div>
+                          </div>
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot"></div></div>
+                            <div class="t-content">
+                              <div class="top"><strong>Ride inspections</strong><span class="time">Pass</span></div>
+                              <div class="muted">Morning checks complete.</div>
+                            </div>
+                          </div>
+                          <div class="t-item">
+                            <div class="t-line"><div class="t-dot" style="background: var(--warn)"></div></div>
+                            <div class="t-content">
+                              <div class="top"><strong>HVAC load</strong><span class="time">Watch</span></div>
+                              <div class="muted">High occupancy cooling demand.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- MAINTENANCE -->
+          <section class="view" id="view-maint">
+            <div class="grid">
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>Maintenance (Mock)</h3>
+                  <div class="meta">Work orders + PM schedule</div>
+                </div>
+                <div class="card-body">
+                  <div class="two-col">
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>Open maintenance work orders</h3>
+                        <div class="meta">Sample</div>
+                      </div>
+                      <div class="card-body small">
+                        <div class="table-wrap">
+                          <table aria-label="Maintenance work orders">
+                            <thead>
+                              <tr>
+                                <th>ID</th>
+                                <th>Asset</th>
+                                <th>Priority</th>
+                                <th>Due</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="mono">MNT-33802</td>
+                                <td class="mono">SRV-ASSY-02</td>
+                                <td><span class="badge warn"><span class="mini"></span>P2</span></td>
+                                <td class="mono">Today 17:00</td>
+                              </tr>
+                              <tr>
+                                <td class="mono">MNT-33811</td>
+                                <td class="mono">PV-STRINGER-01</td>
+                                <td><span class="badge bad"><span class="mini"></span>P1</span></td>
+                                <td class="mono">Now</td>
+                              </tr>
+                              <tr>
+                                <td class="mono">MNT-33818</td>
+                                <td class="mono">CNC-MILL-03</td>
+                                <td><span class="badge good"><span class="mini"></span>P3</span></td>
+                                <td class="mono">Fri</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="box-shadow: none">
+                      <div class="card-header">
+                        <h3>PM checklist (mock)</h3>
+                        <div class="meta">Operator-friendly</div>
+                      </div>
+                      <div class="card-body">
+                        <div class="form small">
+                          <div class="field">
+                            <label>Asset</label>
+                            <select>
+                              <option>CNC-MILL-03</option>
+                              <option>SRV-ASSY-02</option>
+                              <option>PV-STRINGER-01</option>
+                              <option>ELEC-SMT-01</option>
+                            </select>
+                          </div>
+                          <div class="field">
+                            <label>Checklist</label>
+                            <textarea readonly>
+- Visual inspection: guards, leaks, loose fasteners
+- Lubrication: verify reservoir levels
+- Sensors: verify alerts / limit switches
+- Safety: e-stop / interlocks
+- Clean: remove chips / dust
+                            </textarea>
+                          </div>
+                          <div class="btns">
+                            <button class="primary" type="button">Mark complete (mock)</button>
+                            <button class="ghost" type="button">Log issue (mock)</button>
+                          </div>
+                          <div class="hint">Buttons do not persist; this is a UI-only concept.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </section>
+    </div>
+
+    <script>
+      (function () {
+        const byId = (id) => document.getElementById(id);
+        const pad2 = (n) => String(n).padStart(2, "0");
+        const fmtLocal = (d) =>
+          `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())} ${pad2(
+            d.getHours()
+          )}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
+        const msToHuman = (ms) => {
+          if (!Number.isFinite(ms) || ms < 0) return "—";
+          const s = Math.round(ms / 1000);
+          const mm = Math.floor(s / 60);
+          const ss = s % 60;
+          if (mm <= 0) return `${ss}s`;
+          return `${mm}m ${ss}s`;
+        };
+
+        // Sidebar navigation / views
+        const nav = byId("nav");
+        const pageTitle = byId("pageTitle");
+        const pageSubtitle = byId("pageSubtitle");
+        const views = Array.from(document.querySelectorAll(".view"));
+        const titleMap = {
+          dashboard: {
+            title: "Corporate Dashboard",
+            sub: "Consolidated view across manufacturing, media, and energy operations.",
+          },
+          mes: {
+            title: "Manufacturing MES",
+            sub: "Operator production mock: barcode input + START/END timestamps + recent records.",
+          },
+          trace: {
+            title: "Traceability",
+            sub: "Product genealogy timeline concept with sample events.",
+          },
+          scada: {
+            title: "SCADA / Machine Monitoring",
+            sub: "Assets + sample telemetry stream (randomized).",
+          },
+          quality: {
+            title: "Quality / SPC",
+            sub: "SPC snapshot + nonconformance queue concept.",
+          },
+          media: {
+            title: "Media / Streaming Operations",
+            sub: "QoE, pipeline health, and regional status mock.",
+          },
+          solar: {
+            title: "Solar Energy Operations",
+            sub: "Plant generation overview and inverter/string health concept.",
+          },
+          ent: {
+            title: "Entertainment Facilities",
+            sub: "Visitor metrics and readiness checks mock.",
+          },
+          maint: {
+            title: "Maintenance",
+            sub: "Work orders and PM checklist concept.",
+          },
+        };
+
+        function setActiveView(name) {
+          const meta = titleMap[name] || titleMap.dashboard;
+          pageTitle.textContent = meta.title;
+          pageSubtitle.textContent = meta.sub;
+
+          views.forEach((v) => v.classList.remove("active"));
+          const el = byId(`view-${name}`) || byId("view-dashboard");
+          el.classList.add("active");
+
+          const links = nav.querySelectorAll("a[data-view]");
+          links.forEach((a) => a.classList.toggle("active", a.dataset.view === name));
+        }
+
+        function currentViewFromHash() {
+          const h = (location.hash || "#dashboard").replace("#", "").trim();
+          return h || "dashboard";
+        }
+
+        window.addEventListener("hashchange", () => setActiveView(currentViewFromHash()));
+        setActiveView(currentViewFromHash());
+
+        // Header clock + refresh timestamp
+        const clock = byId("clock");
+        const lastRefresh = byId("lastRefresh");
+        function tickClock() {
+          const now = new Date();
+          clock.textContent = `${pad2(now.getHours())}:${pad2(now.getMinutes())}:${pad2(now.getSeconds())}`;
+          lastRefresh.textContent = fmtLocal(now);
+        }
+        tickClock();
+        setInterval(tickClock, 1000);
+
+        // Manufacturing MES: in-memory production records + start/end timestamps
+        const recordsTbody = byId("recordsTbody");
+        const recordCount = byId("recordCount");
+        const btnStart = byId("btnStart");
+        const btnEnd = byId("btnEnd");
+        const btnClear = byId("btnClear");
+        const runState = byId("runState");
+
+        const activeBarcode = byId("activeBarcode");
+        const activeStart = byId("activeStart");
+        const activeEnd = byId("activeEnd");
+        const activeCycle = byId("activeCycle");
+
+        const barcodeInput = byId("barcode");
+        const workCenter = byId("workCenter");
+        const operatorId = byId("operatorId");
+        const wo = byId("wo");
+
+        const records = [];
+        let activeRun = null;
+
+        function badgeHtml(status) {
+          const map = {
+            COMPLETE: "good",
+            IN_PROGRESS: "warn",
+            HOLD: "bad",
+          };
+          const cls = map[status] || "";
+          return `<span class="badge ${cls}"><span class="mini"></span>${status}</span>`;
+        }
+
+        function renderRecords() {
+          recordsTbody.innerHTML = records
+            .slice()
+            .sort((a, b) => b.ts - a.ts)
+            .slice(0, 14)
+            .map((r) => {
+              const cycle = r.end ? msToHuman(r.end - r.start) : "—";
+              return `
+                <tr>
+                  <td class="mono">${fmtLocal(new Date(r.ts))}</td>
+                  <td class="mono">${r.workCenter}</td>
+                  <td class="mono">${r.wo}</td>
+                  <td class="mono">${r.barcode}</td>
+                  <td>${badgeHtml(r.status)}</td>
+                  <td class="mono">${cycle}</td>
+                </tr>
+              `;
+            })
+            .join("");
+          recordCount.textContent = String(records.length);
+        }
+
+        function setRunUi(state) {
+          if (state === "idle") {
+            runState.className = "badge";
+            runState.innerHTML = `<span class="mini"></span>Idle`;
+            btnEnd.disabled = true;
+            btnStart.disabled = false;
+            activeBarcode.textContent = "—";
+            activeStart.textContent = "—";
+            activeEnd.textContent = "—";
+            activeCycle.textContent = "—";
+            return;
+          }
+          runState.className = "badge warn";
+          runState.innerHTML = `<span class="mini"></span>In progress`;
+          btnEnd.disabled = false;
+          btnStart.disabled = true;
+        }
+
+        function seedRecords() {
+          const now = Date.now();
+          const sample = [
+            {
+              ts: now - 1000 * 60 * 12,
+              workCenter: "ELEC-SMT-01",
+              wo: "WO-2026-0505-014",
+              barcode: "MKC-STB-SN-00091812",
+              status: "COMPLETE",
+              start: now - 1000 * 60 * 15,
+              end: now - 1000 * 60 * 12,
+            },
+            {
+              ts: now - 1000 * 60 * 22,
+              workCenter: "CNC-MILL-03",
+              wo: "WO-2026-0505-009",
+              barcode: "MKC-CNC-LOT2405-000044",
+              status: "COMPLETE",
+              start: now - 1000 * 60 * 30,
+              end: now - 1000 * 60 * 22,
+            },
+            {
+              ts: now - 1000 * 60 * 36,
+              workCenter: "PV-STRINGER-01",
+              wo: "WO-2026-0505-007",
+              barcode: "MKC-PV-LOT2405-000179",
+              status: "HOLD",
+              start: now - 1000 * 60 * 45,
+              end: now - 1000 * 60 * 36,
+            },
+            {
+              ts: now - 1000 * 60 * 48,
+              workCenter: "SRV-ASSY-02",
+              wo: "WO-2026-0505-004",
+              barcode: "MKC-SRV-SN-0091782",
+              status: "COMPLETE",
+              start: now - 1000 * 60 * 57,
+              end: now - 1000 * 60 * 48,
+            },
+          ];
+          sample.forEach((r) => records.push(r));
+          renderRecords();
+        }
+        seedRecords();
+        setRunUi("idle");
+
+        function startRun() {
+          const barcode = (barcodeInput.value || "").trim();
+          if (!barcode) {
+            barcodeInput.focus();
+            barcodeInput.style.boxShadow = "var(--ring)";
+            setTimeout(() => (barcodeInput.style.boxShadow = ""), 700);
+            return;
+          }
+          const now = Date.now();
+          activeRun = {
+            ts: now,
+            workCenter: workCenter.value,
+            operatorId: operatorId.value.trim() || "OP-0000",
+            wo: wo.value.trim() || "WO-UNSPEC",
+            barcode,
+            status: "IN_PROGRESS",
+            start: now,
+            end: null,
+          };
+          records.push(activeRun);
+          activeBarcode.textContent = barcode;
+          activeStart.textContent = fmtLocal(new Date(now));
+          activeEnd.textContent = "—";
+          activeCycle.textContent = "—";
+          setRunUi("running");
+          renderRecords();
+        }
+
+        function endRun() {
+          if (!activeRun) return;
+          const now = Date.now();
+          activeRun.end = now;
+          activeRun.ts = now;
+          activeRun.status = "COMPLETE";
+          activeEnd.textContent = fmtLocal(new Date(now));
+          activeCycle.textContent = msToHuman(now - activeRun.start);
+          activeRun = null;
+          setRunUi("idle");
+          renderRecords();
+          barcodeInput.select();
+          barcodeInput.focus();
+        }
+
+        btnStart.addEventListener("click", startRun);
+        btnEnd.addEventListener("click", endRun);
+        btnClear.addEventListener("click", () => {
+          barcodeInput.value = "";
+          barcodeInput.focus();
+        });
+        barcodeInput.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            if (activeRun) endRun();
+            else startRun();
+          }
+        });
+
+        // Traceability timeline mock
+        const traceInput = byId("traceInput");
+        const traceTimeline = byId("traceTimeline");
+        const traceProduct = byId("traceProduct");
+        const traceWo = byId("traceWo");
+        const traceLine = byId("traceLine");
+        const traceMats = byId("traceMats");
+        const traceQual = byId("traceQual");
+
+        function renderTimeline(events) {
+          traceTimeline.innerHTML = events
+            .map(
+              (ev) => `
+              <div class="t-item">
+                <div class="t-line"><div class="t-dot" style="background:${ev.dot}"></div></div>
+                <div class="t-content">
+                  <div class="top">
+                    <strong>${ev.title}</strong>
+                    <span class="time">${ev.time}</span>
+                  </div>
+                  <div class="small muted">${ev.desc}</div>
+                </div>
+              </div>
+            `
+            )
+            .join("");
+        }
+
+        function loadTrace(productId) {
+          const pid = (productId || "").trim() || "—";
+          traceProduct.textContent = pid;
+          traceWo.textContent = "WO-2026-0505-007";
+          traceLine.textContent = "PV-STRINGER-01 → PV-LAM-02 → PV-TEST-01";
+          traceMats.textContent = "EVA-LOT-2405-18, GLASS-LOT-2404-11, CELL-LOT-2405-07";
+          traceQual.textContent = "PASS (sample)";
+
+          const events = [
+            {
+              title: "Material issue (mock)",
+              time: "08:12",
+              desc: "EVA lot scanned: EVA-LOT-2405-18. Storage temperature within limits.",
+              dot: "var(--brand-2)",
+            },
+            {
+              title: "Stringing started",
+              time: "09:03",
+              desc: "Cells placed; soldering temperature profile matched recipe PV-MONO-A.",
+              dot: "var(--brand)",
+            },
+            {
+              title: "Lamination complete",
+              time: "10:18",
+              desc: "Vacuum + cure parameters recorded. No alarms.",
+              dot: "var(--brand)",
+            },
+            {
+              title: "EL inspection",
+              time: "10:44",
+              desc: "No cracks detected (sample). Image archived to QC store (mock).",
+              dot: "var(--good)",
+            },
+            {
+              title: "Final test",
+              time: "11:06",
+              desc: "IV curve within spec; label printed; shipping pallet assignment created.",
+              dot: "var(--good)",
+            },
+          ];
+          renderTimeline(events);
+        }
+
+        byId("btnTrace").addEventListener("click", () => loadTrace(traceInput.value));
+        byId("btnTraceSample").addEventListener("click", () => {
+          traceInput.value = "MKC-SRV-SN-0091812";
+          loadTrace(traceInput.value);
+        });
+        loadTrace(traceInput.value);
+
+        // SCADA telemetry mock stream
+        const tel = {
+          load: byId("telLoad"),
+          vib: byId("telVib"),
+          temp: byId("telTemp"),
+          lat: byId("telLat"),
+          loadPill: byId("telLoadPill"),
+          vibPill: byId("telVibPill"),
+          tempPill: byId("telTempPill"),
+        };
+        function setPill(el, kind, text) {
+          el.className = `pill ${kind || ""}`.trim();
+          el.textContent = text;
+        }
+        function rand(min, max, dp = 0) {
+          const v = min + Math.random() * (max - min);
+          const m = Math.pow(10, dp);
+          return Math.round(v * m) / m;
+        }
+        function updateTelemetry() {
+          const load = rand(42, 78, 0);
+          const vib = rand(2.2, 6.9, 1);
+          const temp = rand(46, 72, 0);
+          const lat = rand(12, 28, 0);
+          tel.load.textContent = String(load);
+          tel.vib.textContent = vib.toFixed(1);
+          tel.temp.textContent = String(temp);
+          tel.lat.textContent = String(lat);
+          setPill(tel.loadPill, load > 72 ? "warn" : "good", load > 72 ? "High" : "Normal");
+          setPill(tel.vibPill, vib > 5.8 ? "warn" : "good", vib > 5.8 ? "Trending" : "Normal");
+          setPill(tel.tempPill, temp > 68 ? "warn" : "good", temp > 68 ? "Warm" : "Normal");
+        }
+        updateTelemetry();
+        setInterval(updateTelemetry, 2000);
+
+        // Dashboard visualizations: donut + pareto animation + heatmap
+        function renderDonut() {
+          const rings = Array.from(document.querySelectorAll("#view-dashboard .donut .ring"));
+          if (!rings.length) return;
+          const r = 44;
+          const C = 2 * Math.PI * r;
+          let offset = 0;
+          rings.forEach((ring, i) => {
+            const pct = Number(ring.getAttribute("data-pct") || "0");
+            const len = (pct / 100) * C;
+            ring.setAttribute("stroke-dasharray", `${len} ${C - len}`);
+            ring.setAttribute("stroke-dashoffset", String(-offset));
+            ring.style.transition = "stroke-dasharray 700ms ease, stroke-dashoffset 700ms ease";
+            offset += len + (i === rings.length - 1 ? 0 : C * 0.01); // tiny gap
+          });
+          const center = byId("mixCenter");
+          if (center) center.textContent = "100%";
+        }
+
+        function animateBars() {
+          const bars = Array.from(document.querySelectorAll("#paretoBars [data-pct]"));
+          bars.forEach((b, idx) => {
+            const pct = Number(b.getAttribute("data-pct") || "0");
+            // stagger for a bit of polish
+            setTimeout(() => {
+              b.style.width = `${Math.max(0, Math.min(100, pct))}%`;
+            }, 120 + idx * 60);
+          });
+        }
+
+        function renderHeatmap() {
+          const hm = byId("hm");
+          if (!hm) return;
+          hm.innerHTML = "";
+          // 4 plants x 12 weeks
+          const levels = [
+            [1, 2, 2, 3, 2, 2, 1, 2, 3, 3, 2, 2], // PV
+            [2, 2, 3, 3, 4, 3, 2, 2, 3, 4, 3, 2], // Servo
+            [1, 1, 2, 2, 2, 3, 2, 2, 2, 3, 2, 1], // CNC
+            [0, 1, 1, 2, 3, 2, 1, 1, 2, 2, 2, 1], // SMT/Electronics
+          ];
+          const labels = ["PV", "Servo", "CNC", "SMT"];
+          levels.forEach((row, r) => {
+            row.forEach((lvl, c) => {
+              const cell = document.createElement("div");
+              cell.className = "cell";
+              cell.dataset.level = String(lvl);
+              cell.title = `${labels[r]} · Week ${c + 1} · Level ${lvl}`;
+              hm.appendChild(cell);
+            });
+          });
+        }
+
+        renderDonut();
+        animateBars();
+        renderHeatmap();
+
+        // Global search mock: highlights matching text nodes in active view (lightweight)
+        const globalSearch = byId("globalSearch");
+        let lastMarks = [];
+        function clearMarks() {
+          lastMarks.forEach((el) => {
+            el.style.outline = "";
+            el.style.background = "";
+          });
+          lastMarks = [];
+        }
+        globalSearch.addEventListener("input", () => {
+          clearMarks();
+          const q = (globalSearch.value || "").trim().toLowerCase();
+          if (!q) return;
+          const active = document.querySelector(".view.active");
+          if (!active) return;
+          const candidates = Array.from(active.querySelectorAll("td, .t-content, .kpi, .callout, strong"));
+          candidates.forEach((el) => {
+            const txt = (el.textContent || "").toLowerCase();
+            if (txt.includes(q)) {
+              el.style.outline = "1px solid rgba(94,234,212,0.35)";
+              el.style.background = "rgba(94,234,212,0.06)";
+              lastMarks.push(el);
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
+
