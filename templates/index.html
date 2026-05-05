@@ -650,6 +650,57 @@
         height: 100%;
       }
 
+      .kpi-sparks {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .kpi-spark {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 14px;
+        padding: 10px 10px 12px;
+      }
+
+      .kpi-spark .k-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+
+      .kpi-spark .k-top strong {
+        font-size: 12px;
+        letter-spacing: 0.2px;
+      }
+
+      .kpi-spark .k-top span {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: var(--mono);
+        white-space: nowrap;
+      }
+
+      .spark.kpi {
+        height: 62px;
+      }
+
+      .spark.kpi .grid line {
+        stroke: rgba(255, 255, 255, 0.08);
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+      }
+
+      .spark.kpi path {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        opacity: 0.95;
+      }
+
       /* Lightweight chart toolkit (UI mock) */
       .viz-grid {
         display: grid;
@@ -748,6 +799,159 @@
         margin-top: 2px;
         font-size: 11px;
         color: var(--muted);
+      }
+
+      /* OEE dashboard (UI mock) */
+      .oee-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 12px;
+      }
+
+      .oee-card {
+        grid-column: span 3;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 14px;
+        padding: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .oee-card::after {
+        content: "";
+        position: absolute;
+        inset: -120px -120px auto auto;
+        width: 260px;
+        height: 260px;
+        border-radius: 999px;
+        background: radial-gradient(circle at 30% 30%, rgba(96, 165, 250, 0.12), transparent 60%);
+        transform: rotate(8deg);
+        pointer-events: none;
+      }
+
+      .oee-head {
+        position: relative;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .oee-head .name {
+        font-size: 12px;
+        letter-spacing: 0.2px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .oee-head .unit {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: var(--mono);
+        white-space: nowrap;
+      }
+
+      .oee-mid {
+        position: relative;
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 104px 1fr;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .gauge {
+        width: 104px;
+        height: 104px;
+        position: relative;
+        filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.22));
+      }
+
+      .gauge svg {
+        width: 104px;
+        height: 104px;
+      }
+
+      .gauge .ring-bg {
+        stroke: rgba(255, 255, 255, 0.12);
+      }
+
+      .gauge .ring-fg {
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        stroke-linecap: round;
+        transition: stroke-dasharray 700ms ease, stroke 250ms ease;
+      }
+
+      .gauge-center {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+        text-align: center;
+      }
+
+      .gauge-center .pct {
+        font-family: var(--mono);
+        font-weight: 800;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+      }
+
+      .gauge-center .lbl {
+        margin-top: 2px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .oee-metrics {
+        display: grid;
+        gap: 9px;
+      }
+
+      .metric {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .metric .m-name {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .meter {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+
+      .meter > span {
+        display: block;
+        height: 100%;
+        width: 0%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(94, 234, 212, 0.85), rgba(96, 165, 250, 0.85));
+        transition: width 650ms ease;
+      }
+
+      .meter > span.a {
+        background: linear-gradient(90deg, rgba(96, 165, 250, 0.9), rgba(96, 165, 250, 0.4));
+      }
+      .meter > span.p {
+        background: linear-gradient(90deg, rgba(94, 234, 212, 0.9), rgba(94, 234, 212, 0.35));
+      }
+      .meter > span.q {
+        background: linear-gradient(90deg, rgba(52, 211, 153, 0.9), rgba(52, 211, 153, 0.35));
       }
 
       .barlist {
@@ -883,11 +1087,286 @@
         .kpis {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+        .oee-card {
+          grid-column: span 12;
+        }
+        .kpi-sparks {
+          grid-template-columns: 1fr;
+        }
         .two-col,
         .split,
         .row {
           grid-template-columns: 1fr;
         }
+      }
+
+      /* Theme picker (UI only) */
+      .theme-picker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.78);
+      }
+      .theme-picker label {
+        color: var(--muted);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .theme-picker select {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.18);
+        color: rgba(255, 255, 255, 0.9);
+        padding: 8px 10px;
+        border-radius: 999px;
+        outline: none;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      /* =========================
+         Theme overrides (UI only)
+         Apply by setting:
+           <body class="theme-graphite"> etc.
+         ========================= */
+
+      body.theme-graphite {
+        --bg: #0b0f17;
+        --panel: #101827;
+        --panel-2: #0f1c2e;
+        --border: rgba(255, 255, 255, 0.08);
+        --text: rgba(255, 255, 255, 0.88);
+        --muted: rgba(255, 255, 255, 0.62);
+        --muted-2: rgba(255, 255, 255, 0.45);
+        --brand: #35d0ba;
+        --brand-2: #4f8bff;
+        --good: #22c55e;
+        --warn: #f59e0b;
+        --danger: #ef4444;
+        --shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+        --ring: 0 0 0 3px rgba(79, 139, 255, 0.18);
+        background:
+          radial-gradient(1100px 650px at 18% 12%, rgba(79, 139, 255, 0.18), transparent 60%),
+          radial-gradient(900px 540px at 82% 18%, rgba(53, 208, 186, 0.12), transparent 58%),
+          radial-gradient(900px 520px at 70% 95%, rgba(245, 158, 11, 0.07), transparent 60%),
+          var(--bg);
+      }
+      body.theme-graphite .card {
+        border-color: var(--border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%),
+          rgba(16, 24, 39, 0.74);
+      }
+      body.theme-graphite .sidebar {
+        border-right: 1px solid var(--border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 30%),
+          rgba(8, 12, 20, 0.55);
+      }
+      body.theme-graphite .logo {
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: 0 12px 25px rgba(79, 139, 255, 0.14);
+      }
+      body.theme-graphite .nav a.active {
+        background: linear-gradient(135deg, rgba(53, 208, 186, 0.14), rgba(79, 139, 255, 0.1));
+        border-color: rgba(79, 139, 255, 0.24);
+      }
+      body.theme-graphite .kpi::after {
+        background: radial-gradient(circle at 30% 30%, rgba(79, 139, 255, 0.2), transparent 60%);
+      }
+      body.theme-graphite button.primary {
+        border-color: rgba(79, 139, 255, 0.28);
+        background: linear-gradient(135deg, rgba(79, 139, 255, 0.2), rgba(53, 208, 186, 0.1));
+      }
+      body.theme-graphite .t-dot {
+        background: var(--brand-2);
+        box-shadow: 0 0 0 4px rgba(79, 139, 255, 0.12);
+      }
+
+      body.theme-cleanroom {
+        --bg: #071521;
+        --panel: #0a2030;
+        --panel-2: #0b2638;
+        --border: rgba(255, 255, 255, 0.085);
+        --text: rgba(255, 255, 255, 0.9);
+        --muted: rgba(255, 255, 255, 0.66);
+        --muted-2: rgba(255, 255, 255, 0.48);
+        --brand: #2dd4bf;
+        --brand-2: #22a3ff;
+        --good: #34d399;
+        --warn: #fbbf24;
+        --danger: #fb7185;
+        --shadow: 0 20px 52px rgba(0, 0, 0, 0.38);
+        --ring: 0 0 0 3px rgba(45, 212, 191, 0.18);
+        background:
+          radial-gradient(1200px 700px at 18% 12%, rgba(34, 163, 255, 0.18), transparent 60%),
+          radial-gradient(1000px 650px at 85% 18%, rgba(45, 212, 191, 0.14), transparent 58%),
+          radial-gradient(900px 520px at 70% 95%, rgba(251, 191, 36, 0.08), transparent 60%),
+          var(--bg);
+      }
+      body.theme-cleanroom .card {
+        border-color: var(--border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 40%),
+          rgba(10, 32, 48, 0.76);
+      }
+      body.theme-cleanroom .logo {
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: 0 12px 28px rgba(45, 212, 191, 0.14);
+      }
+      body.theme-cleanroom .nav a.active {
+        background: linear-gradient(135deg, rgba(45, 212, 191, 0.16), rgba(34, 163, 255, 0.1));
+        border-color: rgba(45, 212, 191, 0.26);
+      }
+      body.theme-cleanroom .kpi::after {
+        background: radial-gradient(circle at 30% 30%, rgba(45, 212, 191, 0.22), transparent 60%);
+      }
+      body.theme-cleanroom button.primary {
+        border-color: rgba(45, 212, 191, 0.3);
+        background: linear-gradient(135deg, rgba(45, 212, 191, 0.2), rgba(34, 163, 255, 0.1));
+      }
+      body.theme-cleanroom .t-dot {
+        background: var(--brand);
+        box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.12);
+      }
+
+      body.theme-cyberviolet {
+        --bg: #070715;
+        --panel: #0d0b22;
+        --panel-2: #0f1030;
+        --border: rgba(255, 255, 255, 0.09);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.66);
+        --muted-2: rgba(255, 255, 255, 0.5);
+        --brand: #22d3ee;
+        --brand-2: #a78bfa;
+        --good: #2ee59d;
+        --warn: #fde047;
+        --danger: #ff4d6d;
+        --shadow: 0 22px 60px rgba(0, 0, 0, 0.5);
+        --ring: 0 0 0 3px rgba(167, 139, 250, 0.2);
+        background:
+          radial-gradient(1150px 680px at 15% 10%, rgba(167, 139, 250, 0.22), transparent 58%),
+          radial-gradient(1050px 650px at 88% 20%, rgba(34, 211, 238, 0.14), transparent 60%),
+          radial-gradient(900px 520px at 70% 95%, rgba(253, 224, 71, 0.08), transparent 62%),
+          var(--bg);
+      }
+      body.theme-cyberviolet .card {
+        border-color: var(--border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 42%),
+          rgba(13, 11, 34, 0.76);
+      }
+      body.theme-cyberviolet .logo {
+        background: linear-gradient(135deg, var(--brand-2), var(--brand));
+        box-shadow: 0 12px 34px rgba(167, 139, 250, 0.16);
+      }
+      body.theme-cyberviolet .nav a.active {
+        background: linear-gradient(135deg, rgba(167, 139, 250, 0.16), rgba(34, 211, 238, 0.1));
+        border-color: rgba(167, 139, 250, 0.28);
+      }
+      body.theme-cyberviolet .kpi::after {
+        background: radial-gradient(circle at 30% 30%, rgba(167, 139, 250, 0.24), transparent 60%);
+      }
+      body.theme-cyberviolet button.primary {
+        border-color: rgba(167, 139, 250, 0.32);
+        background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(34, 211, 238, 0.1));
+      }
+      body.theme-cyberviolet .t-dot {
+        background: var(--brand-2);
+        box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.12);
+      }
+
+      body.theme-forestops {
+        --bg: #07140e;
+        --panel: #0b2218;
+        --panel-2: #0c2a1d;
+        --border: rgba(255, 255, 255, 0.085);
+        --text: rgba(255, 255, 255, 0.9);
+        --muted: rgba(255, 255, 255, 0.64);
+        --muted-2: rgba(255, 255, 255, 0.47);
+        --brand: #34d399;
+        --brand-2: #60a5fa;
+        --good: #22c55e;
+        --warn: #fbbf24;
+        --danger: #f87171;
+        --shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+        --ring: 0 0 0 3px rgba(52, 211, 153, 0.18);
+        background:
+          radial-gradient(1150px 680px at 18% 12%, rgba(52, 211, 153, 0.18), transparent 60%),
+          radial-gradient(1000px 620px at 86% 20%, rgba(96, 165, 250, 0.12), transparent 60%),
+          radial-gradient(900px 520px at 70% 95%, rgba(251, 191, 36, 0.07), transparent 62%),
+          var(--bg);
+      }
+      body.theme-forestops .card {
+        border-color: var(--border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 42%),
+          rgba(11, 34, 24, 0.76);
+      }
+      body.theme-forestops .logo {
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: 0 12px 30px rgba(52, 211, 153, 0.14);
+      }
+      body.theme-forestops .nav a.active {
+        background: linear-gradient(135deg, rgba(52, 211, 153, 0.16), rgba(96, 165, 250, 0.1));
+        border-color: rgba(52, 211, 153, 0.26);
+      }
+      body.theme-forestops .kpi::after {
+        background: radial-gradient(circle at 30% 30%, rgba(52, 211, 153, 0.22), transparent 60%);
+      }
+      body.theme-forestops button.primary {
+        border-color: rgba(52, 211, 153, 0.3);
+        background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(96, 165, 250, 0.1));
+      }
+      body.theme-forestops .t-dot {
+        background: var(--brand);
+        box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.12);
+      }
+
+      body.theme-ambersteel {
+        --bg: #120b08;
+        --panel: #1a1411;
+        --panel-2: #241a13;
+        --border: rgba(255, 255, 255, 0.09);
+        --text: rgba(255, 255, 255, 0.9);
+        --muted: rgba(255, 255, 255, 0.64);
+        --muted-2: rgba(255, 255, 255, 0.48);
+        --brand: #f59e0b;
+        --brand-2: #38bdf8;
+        --good: #34d399;
+        --warn: #f59e0b;
+        --danger: #f43f5e;
+        --shadow: 0 20px 55px rgba(0, 0, 0, 0.48);
+        --ring: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        background:
+          radial-gradient(1150px 680px at 18% 12%, rgba(245, 158, 11, 0.18), transparent 60%),
+          radial-gradient(1000px 620px at 86% 20%, rgba(56, 189, 248, 0.12), transparent 60%),
+          radial-gradient(900px 520px at 70% 95%, rgba(244, 63, 94, 0.08), transparent 62%),
+          var(--bg);
+      }
+      body.theme-ambersteel .card {
+        border-color: var(--border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 42%),
+          rgba(26, 20, 17, 0.78);
+      }
+      body.theme-ambersteel .logo {
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: 0 12px 34px rgba(245, 158, 11, 0.16);
+      }
+      body.theme-ambersteel .nav a.active {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.16), rgba(56, 189, 248, 0.1));
+        border-color: rgba(245, 158, 11, 0.28);
+      }
+      body.theme-ambersteel .kpi::after {
+        background: radial-gradient(circle at 30% 30%, rgba(245, 158, 11, 0.22), transparent 60%);
+      }
+      body.theme-ambersteel button.primary {
+        border-color: rgba(245, 158, 11, 0.32);
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(56, 189, 248, 0.1));
+      }
+      body.theme-ambersteel .t-dot {
+        background: var(--brand);
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12);
       }
     </style>
   </head>
@@ -954,6 +1433,17 @@
             <div class="chip" title="Mock system health">
               <span class="dot" aria-hidden="true"></span>Systems nominal
             </div>
+            <div class="theme-picker" title="UI theme (live preview)">
+              <label for="themeSelect">Theme</label>
+              <select id="themeSelect" aria-label="Theme">
+                <option value="">Default (Aqua)</option>
+                <option value="theme-graphite">Graphite Blue</option>
+                <option value="theme-cleanroom">Teal Cleanroom</option>
+                <option value="theme-cyberviolet">Cyber Violet</option>
+                <option value="theme-forestops">Forest Ops</option>
+                <option value="theme-ambersteel">Amber Steel</option>
+              </select>
+            </div>
           </div>
         </header>
 
@@ -1019,6 +1509,64 @@
                               stroke-width="1.8"
                             />
                           </svg>
+                        </div>
+
+                        <div class="kpi-sparks" aria-label="KPI trends (mock)">
+                          <div class="kpi-spark">
+                            <div class="k-top"><strong>OEE</strong><span id="kpiOeeNow">--</span></div>
+                            <div class="spark kpi" aria-hidden="true">
+                              <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <g class="grid">
+                                  <line x1="0" y1="10" x2="100" y2="10"></line>
+                                  <line x1="0" y1="20" x2="100" y2="20"></line>
+                                  <line x1="0" y1="30" x2="100" y2="30"></line>
+                                </g>
+                                <path id="kpiLineOee" stroke="rgba(94,234,212,0.95)"></path>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <div class="kpi-spark">
+                            <div class="k-top"><strong>FPY</strong><span id="kpiFpyNow">--</span></div>
+                            <div class="spark kpi" aria-hidden="true">
+                              <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <g class="grid">
+                                  <line x1="0" y1="10" x2="100" y2="10"></line>
+                                  <line x1="0" y1="20" x2="100" y2="20"></line>
+                                  <line x1="0" y1="30" x2="100" y2="30"></line>
+                                </g>
+                                <path id="kpiLineFpy" stroke="rgba(52,211,153,0.92)"></path>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <div class="kpi-spark">
+                            <div class="k-top"><strong>Energy</strong><span id="kpiEnergyNow">--</span></div>
+                            <div class="spark kpi" aria-hidden="true">
+                              <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <g class="grid">
+                                  <line x1="0" y1="10" x2="100" y2="10"></line>
+                                  <line x1="0" y1="20" x2="100" y2="20"></line>
+                                  <line x1="0" y1="30" x2="100" y2="30"></line>
+                                </g>
+                                <path id="kpiLineEnergy" stroke="rgba(251,191,36,0.92)"></path>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <div class="kpi-spark">
+                            <div class="k-top"><strong>Streaming QoE</strong><span id="kpiQoeNow">--</span></div>
+                            <div class="spark kpi" aria-hidden="true">
+                              <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <g class="grid">
+                                  <line x1="0" y1="10" x2="100" y2="10"></line>
+                                  <line x1="0" y1="20" x2="100" y2="20"></line>
+                                  <line x1="0" y1="30" x2="100" y2="30"></line>
+                                </g>
+                                <path id="kpiLineQoe" stroke="rgba(96,165,250,0.92)"></path>
+                              </svg>
+                            </div>
+                          </div>
                         </div>
                         <div class="small muted" style="margin-top: 10px">
                           Plants: PV panels, servo motors, CNC, consumer electronics (DVD/STB), stereoscopic
@@ -1239,6 +1787,19 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="grid-column: span 12">
+                <div class="card-header">
+                  <h3>Corporate OEE Dashboard (Mock)</h3>
+                  <div class="meta">Availability × Performance × Quality</div>
+                </div>
+                <div class="card-body">
+                  <div class="oee-grid" id="oeeGrid" aria-label="Corporate OEE dashboard cards"></div>
+                  <div class="hint" style="margin-top: 10px">
+                    Sample data only (no backend). OEE is computed from A/P/Q for each division.
                   </div>
                 </div>
               </div>
@@ -2056,6 +2617,45 @@
     <script>
       (function () {
         const byId = (id) => document.getElementById(id);
+        const THEME_KEY = "mkc_mes_theme";
+        const themeSelect = byId("themeSelect");
+
+        function applyTheme(cls) {
+          const body = document.body;
+          const known = [
+            "theme-graphite",
+            "theme-cleanroom",
+            "theme-cyberviolet",
+            "theme-forestops",
+            "theme-ambersteel",
+          ];
+          known.forEach((c) => body.classList.remove(c));
+          if (cls) body.classList.add(cls);
+        }
+
+        function initThemePicker() {
+          if (!themeSelect) return;
+          const saved = (function () {
+            try {
+              return localStorage.getItem(THEME_KEY) || "";
+            } catch {
+              return "";
+            }
+          })();
+          themeSelect.value = saved;
+          applyTheme(saved);
+
+          themeSelect.addEventListener("change", () => {
+            const v = themeSelect.value || "";
+            applyTheme(v);
+            try {
+              localStorage.setItem(THEME_KEY, v);
+            } catch {
+              // ignore storage failures (private mode / disabled)
+            }
+          });
+        }
+
         const pad2 = (n) => String(n).padStart(2, "0");
         const fmtLocal = (d) =>
           `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())} ${pad2(
@@ -2134,6 +2734,7 @@
 
         window.addEventListener("hashchange", () => setActiveView(currentViewFromHash()));
         setActiveView(currentViewFromHash());
+        initThemePicker();
 
         // Header clock + refresh timestamp
         const clock = byId("clock");
@@ -2433,6 +3034,188 @@
         setInterval(updateTelemetry, 2000);
 
         // Dashboard visualizations: donut + pareto animation + heatmap
+        function colorForOee(pct) {
+          if (!Number.isFinite(pct)) return "rgba(94,234,212,0.85)";
+          if (pct >= 85) return "rgba(52,211,153,0.95)"; // good
+          if (pct >= 75) return "rgba(251,191,36,0.95)"; // warn
+          return "rgba(251,113,133,0.95)"; // bad
+        }
+
+        function clampPct(v) {
+          const n = Number(v);
+          if (!Number.isFinite(n)) return 0;
+          return Math.max(0, Math.min(100, n));
+        }
+
+        function renderKpiTrends() {
+          const series = [
+            { key: "oee", el: byId("kpiLineOee"), now: byId("kpiOeeNow"), unit: "%", values: [82.4, 83.2, 82.9, 84.1, 84.7, 84.2, 84.9, 85.3, 84.8, 85.1] },
+            { key: "fpy", el: byId("kpiLineFpy"), now: byId("kpiFpyNow"), unit: "%", values: [97.2, 97.5, 97.3, 97.7, 97.6, 97.6, 97.8, 97.7, 97.9, 97.8] },
+            { key: "energy", el: byId("kpiLineEnergy"), now: byId("kpiEnergyNow"), unit: "MWh", values: [11.9, 12.1, 12.0, 12.4, 12.7, 12.8, 12.6, 12.9, 13.1, 12.8] },
+            { key: "qoe", el: byId("kpiLineQoe"), now: byId("kpiQoeNow"), unit: "%", values: [99.88, 99.9, 99.91, 99.89, 99.92, 99.91, 99.93, 99.94, 99.92, 99.91] },
+          ];
+
+          const buildPath = (vals) => {
+            const n = vals.length;
+            if (!n) return "";
+            const min = Math.min(...vals);
+            const max = Math.max(...vals);
+            const span = max - min || 1;
+            return vals
+              .map((v, i) => {
+                const x = (i / (n - 1)) * 100;
+                const t = (v - min) / span; // 0..1
+                const y = 36 - t * 30; // keep padding (top/bottom)
+                return `${i === 0 ? "M" : "L"}${x.toFixed(2)},${y.toFixed(2)}`;
+              })
+              .join(" ");
+          };
+
+          series.forEach((s) => {
+            if (!s.el) return;
+            s.el.setAttribute("d", buildPath(s.values));
+            if (s.now) {
+              const last = s.values[s.values.length - 1];
+              const digits = s.key === "qoe" ? 2 : 1;
+              s.now.textContent = `${Number(last).toFixed(digits)}${s.unit ? ` ${s.unit}` : ""}`;
+            }
+          });
+        }
+
+        function renderOeeDashboard() {
+          const host = byId("oeeGrid");
+          if (!host) return;
+
+          const divisions = [
+            {
+              name: "PV Panels",
+              unit: "PV-PLANT-01",
+              availability: 92.1,
+              performance: 89.3,
+              quality: 98.4,
+              note: "Micro-crack pareto stabilized",
+            },
+            {
+              name: "CNC",
+              unit: "CNC-CELL-03",
+              availability: 86.7,
+              performance: 93.4,
+              quality: 96.1,
+              note: "Setup changeover improved",
+            },
+            {
+              name: "Servo Motors",
+              unit: "SRV-LINE-02",
+              availability: 90.2,
+              performance: 84.8,
+              quality: 97.2,
+              note: "Vibration trending monitored",
+            },
+            {
+              name: "Electronics",
+              unit: "ELEC-SMT-01",
+              availability: 88.5,
+              performance: 91.6,
+              quality: 94.8,
+              note: "AOI false reject under review",
+            },
+          ];
+
+          function computeOee(a, p, q) {
+            return (clampPct(a) * clampPct(p) * clampPct(q)) / 10000;
+          }
+
+          host.innerHTML = divisions
+            .map((d) => {
+              const oee = computeOee(d.availability, d.performance, d.quality);
+              const oeeText = `${oee.toFixed(1)}%`;
+              const ringColor = colorForOee(oee);
+              return `
+                <div class="oee-card">
+                  <div class="oee-head">
+                    <div class="name">${d.name}</div>
+                    <div class="unit">${d.unit}</div>
+                  </div>
+
+                  <div class="oee-mid">
+                    <div class="gauge" role="img" aria-label="OEE gauge ${d.name}: ${oeeText}">
+                      <svg viewBox="0 0 120 120" focusable="false" aria-hidden="true">
+                        <circle class="ring-bg" cx="60" cy="60" r="44" fill="none" stroke-width="14"></circle>
+                        <circle
+                          class="ring-fg"
+                          cx="60"
+                          cy="60"
+                          r="44"
+                          fill="none"
+                          stroke-width="14"
+                          stroke="${ringColor}"
+                          data-gauge="oee"
+                          data-pct="${oee.toFixed(1)}"
+                        ></circle>
+                      </svg>
+                      <div class="gauge-center">
+                        <div>
+                          <div class="pct">${oeeText}</div>
+                          <div class="lbl">OEE</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="oee-metrics" aria-label="A P Q metrics">
+                      <div class="metric">
+                        <div class="m-name"><span>Availability</span><span class="mono">${clampPct(d.availability).toFixed(
+                          1
+                        )}%</span></div>
+                        <div class="meter"><span class="a" data-meter="a" data-pct="${clampPct(
+                          d.availability
+                        )}"></span></div>
+                      </div>
+                      <div class="metric">
+                        <div class="m-name"><span>Performance</span><span class="mono">${clampPct(d.performance).toFixed(
+                          1
+                        )}%</span></div>
+                        <div class="meter"><span class="p" data-meter="p" data-pct="${clampPct(
+                          d.performance
+                        )}"></span></div>
+                      </div>
+                      <div class="metric">
+                        <div class="m-name"><span>Quality</span><span class="mono">${clampPct(d.quality).toFixed(
+                          1
+                        )}%</span></div>
+                        <div class="meter"><span class="q" data-meter="q" data-pct="${clampPct(
+                          d.quality
+                        )}"></span></div>
+                      </div>
+                      <div class="hint" style="margin-top: 2px">${d.note}</div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            })
+            .join("");
+
+          // Animate meters + gauges
+          const meters = Array.from(host.querySelectorAll("[data-meter][data-pct]"));
+          meters.forEach((m, idx) => {
+            const pct = clampPct(m.getAttribute("data-pct"));
+            setTimeout(() => {
+              m.style.width = `${pct}%`;
+            }, 90 + idx * 35);
+          });
+
+          const rings = Array.from(host.querySelectorAll("[data-gauge='oee'][data-pct]"));
+          if (rings.length) {
+            const r = 44;
+            const C = 2 * Math.PI * r;
+            rings.forEach((ring, idx) => {
+              const pct = clampPct(ring.getAttribute("data-pct"));
+              const len = (pct / 100) * C;
+              ring.setAttribute("stroke-dasharray", `${len} ${C - len}`);
+              ring.style.transitionDelay = `${120 + idx * 70}ms`;
+            });
+          }
+        }
+
         function renderDonut() {
           const rings = Array.from(document.querySelectorAll("#view-dashboard .donut .ring"));
           if (!rings.length) return;
@@ -2488,6 +3271,8 @@
         renderDonut();
         animateBars();
         renderHeatmap();
+        renderOeeDashboard();
+        renderKpiTrends();
 
         // Global search mock: highlights matching text nodes in active view (lightweight)
         const globalSearch = byId("globalSearch");
@@ -2505,7 +3290,9 @@
           if (!q) return;
           const active = document.querySelector(".view.active");
           if (!active) return;
-          const candidates = Array.from(active.querySelectorAll("td, .t-content, .kpi, .callout, strong"));
+          const candidates = Array.from(
+            active.querySelectorAll("td, .t-content, .kpi, .oee-card, .callout, strong")
+          );
           candidates.forEach((el) => {
             const txt = (el.textContent || "").toLowerCase();
             if (txt.includes(q)) {
